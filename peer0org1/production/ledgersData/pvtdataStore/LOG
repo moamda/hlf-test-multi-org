@@ -1,0 +1,17 @@
+=============== May 21, 2024 (PDT) ===============
+22:36:19.546918 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:36:19.555476 db@open opening
+22:36:19.556000 version@stat F·[] S·0B[] Sc·[]
+22:36:19.558334 db@janitor F·2 G·0
+22:36:19.558572 db@open done T·2.938561ms
+22:36:19.558686 db@close closing
+22:36:19.558785 db@close done T·97.326µs
+=============== May 21, 2024 (PDT) ===============
+22:36:19.562754 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:36:19.563035 version@stat F·[] S·0B[] Sc·[]
+22:36:19.563204 db@open opening
+22:36:19.563302 journal@recovery F·1
+22:36:19.563692 journal@recovery recovering @1
+22:36:19.568635 version@stat F·[] S·0B[] Sc·[]
+22:36:19.581954 db@janitor F·2 G·0
+22:36:19.582377 db@open done T·19.098882ms
