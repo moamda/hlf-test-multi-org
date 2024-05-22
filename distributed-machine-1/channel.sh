@@ -18,10 +18,10 @@ createAnchorPeerUpdate() {
   infoln "Generating anchor peer update transaction for Org${ORG} on channel $CHANNEL_NAME"
 
   if [ $ORG -eq 1 ]; then
-    HOST="1.1.1.1"
+    HOST="192.168.0.151"
     PORT=7051
   elif [ $ORG -eq 2 ]; then
-    HOST="1.1.1.1"
+    HOST="192.168.0.151"
     PORT=9051
   else
     errorln "Org${ORG} unknown"
@@ -39,7 +39,7 @@ createAnchorPeerUpdate() {
 }
 
 updateAnchorPeer() {
-  peer channel update -o 1.1.1.1:7050 --ordererTLSHostnameOverride orderer.example.com -c $CHANNEL_NAME -f ${CORE_PEER_LOCALMSPID}anchors.tx --tls --cafile "$ORDERER_CA" >&log.txt
+  peer channel update -o 192.168.0.151:7050 --ordererTLSHostnameOverride orderer.example.com -c $CHANNEL_NAME -f ${CORE_PEER_LOCALMSPID}anchors.tx --tls --cafile "$ORDERER_CA" >&log.txt
   res=$?
   cat log.txt
   verifyResult $res "Anchor peer update failed"
@@ -53,7 +53,7 @@ configtxgen -profile ChannelUsingRaft -outputBlock ./channel-artifacts/mychannel
 
 sleep 2
 
-osnadmin channel join --channelID mychannel --config-block ./channel-artifacts/mychannel.block -o 1.1.1.1:7053 --ca-file "$ORDERER_CA" --client-cert "$ORDERER_ADMIN_TLS_SIGN_CERT" --client-key "$ORDERER_ADMIN_TLS_PRIVATE_KEY" > logs/osnadmin.log 2>&1
+osnadmin channel join --channelID mychannel --config-block ./channel-artifacts/mychannel.block -o 192.168.0.151:7053 --ca-file "$ORDERER_CA" --client-cert "$ORDERER_ADMIN_TLS_SIGN_CERT" --client-key "$ORDERER_ADMIN_TLS_PRIVATE_KEY" > logs/osnadmin.log 2>&1
 
 sleep 2
 

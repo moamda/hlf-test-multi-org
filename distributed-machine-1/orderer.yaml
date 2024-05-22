@@ -13,7 +13,7 @@
 ################################################################################
 General:
     # Listen address: The IP on which to bind to listen.
-    ListenAddress: 1.1.1.1
+    ListenAddress: 192.168.0.151
 
     # Listen port: The port on which to bind to listen.
     ListenPort: 7050
@@ -121,7 +121,7 @@ General:
     # https://golang.org/pkg/net/http/pprof
     Profile:
         Enabled: false
-        Address: 1.1.1.1:6060
+        Address: 192.168.0.151:6060
 
     # BCCSP configures the blockchain crypto service providers.
     BCCSP:
@@ -176,7 +176,7 @@ General:
 FileLedger:
 
     # Location: The directory to store the blocks in.
-    Location: /home/vm1/hyperledger/production/orderer
+    Location: /home/vm1/hlf-test-multi-org/production/orderer
 
 ################################################################################
 #
@@ -309,7 +309,7 @@ Debug:
 ################################################################################
 Operations:
     # host and port for the operations server
-    ListenAddress: 1.1.1.1:8443
+    ListenAddress: 192.168.0.151:8443
 
     # TLS configuration for the operations endpoint
     TLS:
@@ -347,7 +347,7 @@ Metrics:
       Network: udp
 
       # the statsd server address
-      Address: 1.1.1.1:8125
+      Address: 192.168.0.151:8125
 
       # The interval at which locally cached counters and gauges are pushed
       # to statsd; timings are pushed immediately
@@ -365,7 +365,7 @@ Metrics:
 ################################################################################
 Admin:
     # host and port for the admin server
-    ListenAddress: 1.1.1.1:9445
+    ListenAddress: 192.168.0.151:9445
 
     # TLS configuration for the admin endpoint
     TLS:
@@ -420,8 +420,8 @@ Consensus:
 
     # WALDir specifies the location at which Write Ahead Logs for etcd/raft are
     # stored. Each channel will have its own subdir named after channel ID.
-    WALDir: /home/vm1/hyperledger/production/orderer/etcdraft/wal
+    WALDir: /home/vm1/hlf-test-multi-org/production/orderer/etcdraft/wal
 
     # SnapDir specifies the location at which snapshots for etcd/raft are
     # stored. Each channel will have its own subdir named after channel ID.
-    SnapDir: /home/vm1/hyperledger/production/orderer/etcdraft/snapshot
+    SnapDir: /home/vm1/hlf-test-multi-org/production/orderer/etcdraft/snapshot

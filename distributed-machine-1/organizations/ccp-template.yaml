@@ -12,20 +12,29 @@ organizations:
     mspid: Org${ORG}MSP
     peers:
     - peer0.org${ORG}.example.com
+    - peer1.org${ORG}.example.com
     certificateAuthorities:
     - ca.org${ORG}.example.com
 peers:
   peer0.org${ORG}.example.com:
-    url: grpcs://1.1.1.1:${P0PORT}
+    url: grpcs://192.168.0.151:${P0PORT}
     tlsCACerts:
       pem: |
           ${PEERPEM}
     grpcOptions:
-      ssl-target-name-override: peer0.org${ORG}.example.com
-      hostnameOverride: peer0.org${ORG}.example.com
+      ssl-target-name-override: peer1.org${ORG}.example.com
+      hostnameOverride: peer1.org${ORG}.example.com
+  peer1.org${ORG}.example.com:
+    url: grpcs://192.168.0.153:${P0PORT}
+    tlsCACerts:
+      pem: |
+          ${PEERPEM}
+    grpcOptions:
+      ssl-target-name-override: peer1.org${ORG}.example.com
+      hostnameOverride: peer1.org${ORG}.example.com
 certificateAuthorities:
   ca.org${ORG}.example.com:
-    url: https://1.1.1.1:${CAPORT}
+    url: https://192.168.0.151:${CAPORT}
     caName: ca-org${ORG}
     tlsCACerts:
       pem: 

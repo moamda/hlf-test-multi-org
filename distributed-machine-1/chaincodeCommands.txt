@@ -18,7 +18,7 @@ peer lifecycle chaincode checkcommitreadiness \
 --output json
 
 
-peer lifecycle chaincode approveformyorg -o 1.1.1.1:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile $ORDERER_CA \
+peer lifecycle chaincode approveformyorg -o 192.168.0.151:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile $ORDERER_CA \
 --channelID mychannel \
 --name testreportcc \
 --version 1.0.1 \
@@ -26,11 +26,11 @@ peer lifecycle chaincode approveformyorg -o 1.1.1.1:7050 --ordererTLSHostnameOve
 --sequence 1
 
 
-peer lifecycle chaincode commit -o 1.1.1.1:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile $ORDERER_CA \
+peer lifecycle chaincode commit -o 192.168.0.151:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile $ORDERER_CA \
 --channelID mychannel \
 --name testreportcc \
---peerAddresses 1.1.1.1:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
---peerAddresses 2.2.2.2:9051 --tlsRootCertFiles $PEER0_ORG2_CA \
+--peerAddresses 192.168.0.151:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
+--peerAddresses 192.168.0.153:9051 --tlsRootCertFiles $PEER0_ORG2_CA \
 --version 1.0.1 \
 --sequence 1
 
@@ -49,17 +49,17 @@ peer chaincode query \
 
 
 // CREATE ASSET
-peer chaincode invoke -o 1.1.1.1:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile $ORDERER_CA \
+peer chaincode invoke -o 192.168.0.151:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile $ORDERER_CA \
 -C mychannel \
 -n testreportcc \
---peerAddresses 1.1.1.1:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
---peerAddresses 2.2.2.2:9051 --tlsRootCertFiles $PEER0_ORG2_CA -c '{"Args":["CreateAsset","tsr100","techy","mojojojo","05/13/2024"]}'
+--peerAddresses 192.168.0.151:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
+--peerAddresses 192.168.0.153:9051 --tlsRootCertFiles $PEER0_ORG2_CA -c '{"Args":["CreateAsset","tsr100","techy","mojojojo","05/13/2024"]}'
 
 
 // INIT LEDGER
-peer chaincode invoke -o 1.1.1.1:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile $ORDERER_CA \
+peer chaincode invoke -o 192.168.0.151:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile $ORDERER_CA \
 -C mychannel \
 -n testreportcc \
---peerAddresses 1.1.1.1:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
---peerAddresses 2.2.2.2:9051 --tlsRootCertFiles $PEER0_ORG2_CA \
+--peerAddresses 192.168.0.151:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
+--peerAddresses 192.168.0.153:9051 --tlsRootCertFiles $PEER0_ORG2_CA \
 -c '{"function":"InitLedger","Args":[]}'
