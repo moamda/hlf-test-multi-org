@@ -1,0 +1,256 @@
+[34m2024-05-24 03:58:22.920 PDT 0001 INFO[0m [nodeCmd] [34;1mserve[0m -> Starting peer:
+ Version: v2.5.6
+ Commit SHA: 61fad7b
+ Go version: go1.21.6
+ OS/Arch: linux/amd64
+ Chaincode:
+  Base Docker Label: org.hyperledger.fabric
+  Docker Namespace: hyperledger
+[34m2024-05-24 03:58:22.923 PDT 0002 INFO[0m [nodeCmd] [34;1mserve[0m -> Peer config with combined core.yaml settings and environment variable overrides:
+chaincode:
+  builder: $(DOCKER_NS)/fabric-ccenv:$(TWO_DIGIT_VERSION)
+  executetimeout: 300s
+  externalbuilders:
+  - name: ccaas_builder
+    path: /home/vm3/hlf-test-multi-org/distributed-machine-1/builders/ccaas
+    propagateEnvironment:
+    - CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG
+  golang:
+    dynamiclink: false
+    runtime: $(DOCKER_NS)/fabric-baseos:$(TWO_DIGIT_VERSION)
+  installtimeout: 300s
+  java:
+    runtime: $(DOCKER_NS)/fabric-javaenv:$(TWO_DIGIT_VERSION)
+  keepalive: 0
+  logging:
+    format: '%{color}%{time:2006-01-02 15:04:05.000 MST} [%{module}] %{shortfunc}
+      -> %{level:.4s} %{id:03x}%{color:reset} %{message}'
+    level: info
+    shim: warning
+  mode: net
+  node:
+    runtime: $(DOCKER_NS)/fabric-nodeenv:$(TWO_DIGIT_VERSION)
+  pull: false
+  startuptimeout: 300s
+  system:
+    _lifecycle: enable
+    cscc: enable
+    lscc: enable
+    qscc: enable
+ledger:
+  history:
+    enablehistorydatabase: true
+  pvtdatastore:
+    collelgprocdbbatchesinterval: 1000
+    collelgprocmaxdbbatchsize: 5000
+    deprioritizeddatareconcilerinterval: 60m
+  snapshots:
+    rootdir: /home/vm1/hlf-test-multi-org/org1/peer0/data/snapshots
+  state:
+    couchdbconfig:
+      cachesize: 64
+      couchdbaddress: 192.168.0.151:5984
+      createglobalchangesdb: false
+      internalquerylimit: 1000
+      maxbatchupdatesize: 1000
+      maxretries: 3
+      maxretriesonstartup: 10
+      requesttimeout: 35s
+    statedatabase: goleveldb
+    totalquerylimit: 100000
+logging_level: ""
+metrics:
+  provider: prometheus
+  statsd:
+    address: 192.168.0.151:8125
+    network: udp
+    writeinterval: 10s
+operations:
+  listenaddress: 192.168.0.151:9444
+  tls:
+    clientauthrequired: false
+    clientrootcas:
+      files: []
+    enabled: false
+peer:
+  address: 192.168.0.151:7051
+  addressautodetect: false
+  authentication:
+    timewindow: 15m
+  bccsp:
+    default: SW
+    sw:
+      hash: SHA2
+      security: 256
+  client:
+    conntimeout: 3s
+  deliveryclient:
+    blockgossipenabled: true
+    conntimeout: 3s
+    reconnectbackoffthreshold: 3600s
+    reconnecttotaltimethreshold: 3600s
+  discovery:
+    authcacheenabled: true
+    authcachemaxsize: 1000
+    authcachepurgeretentionratio: 0.75
+    enabled: true
+    orgmembersallowedaccess: false
+  filesystempath: /home/vm1/hlf-test-multi-org/peer0org1/production
+  gateway:
+    dialtimeout: 2m
+    enabled: true
+    endorsementtimeout: 30s
+  gossip:
+    aliveexpirationtimeout: 25s
+    alivetimeinterval: 5s
+    bootstrap: 192.168.0.151:7051
+    conntimeout: 2s
+    dialtimeout: 3s
+    digestwaittime: 1s
+    election:
+      leaderalivethreshold: 10s
+      leaderelectionduration: 5s
+      membershipsampleinterval: 1s
+      startupgraceperiod: 15s
+    externalendpoint: 192.168.0.151:7051
+    maxblockcounttostore: 10
+    maxconnectionattempts: 120
+    maxpropagationburstlatency: 10ms
+    maxpropagationburstsize: 10
+    membershiptrackerinterval: 5s
+    msgexpirationfactor: 20
+    orgleader: true
+    propagateiterations: 1
+    propagatepeernum: 3
+    publishcertperiod: 10s
+    publishstateinfointerval: 4s
+    pullinterval: 4s
+    pullpeernum: 3
+    pvtdata:
+      btlpullmargin: 10
+      implicitcollectiondisseminationpolicy:
+        maxpeercount: 1
+        requiredpeercount: 0
+      pullretrythreshold: 60s
+      pushacktimeout: 3s
+      reconcilebatchsize: 10
+      reconcilesleepinterval: 1m
+      reconciliationenabled: true
+      skippullinginvalidtransactionsduringcommit: false
+      transientstoremaxblockretention: 1000
+    reconnectinterval: 25s
+    recvbuffsize: 20
+    requeststateinfointerval: 4s
+    requestwaittime: 1500ms
+    responsewaittime: 2s
+    sendbuffsize: 200
+    skipblockverification: false
+    state:
+      batchsize: 10
+      blockbuffersize: 20
+      checkinterval: 10s
+      enabled: false
+      maxretries: 3
+      responsetimeout: 3s
+    useleaderelection: false
+  handlers:
+    authfilters:
+    - name: DefaultAuth
+    - name: ExpirationCheck
+    decorators:
+    - name: DefaultDecorator
+    endorsers:
+      escc:
+        name: DefaultEndorsement
+    validators:
+      vscc:
+        name: DefaultValidation
+  id: peer0.org1.example.com
+  keepalive:
+    client:
+      interval: 60s
+      timeout: 20s
+    deliveryclient:
+      interval: 60s
+      timeout: 20s
+    interval: 7200s
+    mininterval: 60s
+    timeout: 20s
+  limits:
+    concurrency:
+      deliverservice: 2500
+      endorserservice: 2500
+  listenaddress: 192.168.0.151:7051
+  localmspid: Org1MSP
+  localmsptype: bccsp
+  maxrecvmsgsize: 104857600
+  maxsendmsgsize: 104857600
+  mspconfigpath: /home/vm1/hlf-test-multi-org/distributed-machine-1/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp
+  networkid: dev
+  profile:
+    enabled: "false"
+    listenaddress: 192.168.0.151:6060
+  tls:
+    cert:
+      file: /home/vm1/hlf-test-multi-org/distributed-machine-1/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
+    clientauthrequired: false
+    clientrootcas:
+      files:
+      - /home/vm3/hlf-test-multi-org/distributed-machine-1/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+    enabled: "true"
+    key:
+      file: /home/vm1/hlf-test-multi-org/distributed-machine-1/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key
+    rootcert:
+      file: /home/vm1/hlf-test-multi-org/distributed-machine-1/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+vm:
+  docker:
+    attachstdout: false
+    hostconfig:
+      logconfig:
+        config:
+          max-file: "5"
+          max-size: 50m
+        type: json-file
+      memory: 2147483648
+      networkmode: host
+    tls:
+      ca:
+        file: docker/ca.crt
+      cert:
+        file: docker/tls.crt
+      enabled: false
+      key:
+        file: docker/tls.key
+  endpoint: unix:///var/run/docker.sock
+[34m2024-05-24 03:58:22.924 PDT 0003 INFO[0m [peer] [34;1mgetLocalAddress[0m -> Auto-detected peer address: 192.168.0.151:7051
+[34m2024-05-24 03:58:22.924 PDT 0004 INFO[0m [peer] [34;1mgetLocalAddress[0m -> Returning 192.168.0.151:7051
+[34m2024-05-24 03:58:22.927 PDT 0005 INFO[0m [nodeCmd] [34;1minitGrpcSemaphores[0m -> concurrency limit for endorser service is 2500
+[34m2024-05-24 03:58:22.927 PDT 0006 INFO[0m [nodeCmd] [34;1minitGrpcSemaphores[0m -> concurrency limit for deliver service is 2500
+[34m2024-05-24 03:58:22.927 PDT 0007 INFO[0m [nodeCmd] [34;1mserve[0m -> Starting peer with TLS enabled
+[34m2024-05-24 03:58:22.966 PDT 0008 INFO[0m [certmonitor] [34;1mtrackCertExpiration[0m -> The enrollment certificate will expire on 2025-05-24 10:58:00 +0000 UTC
+[34m2024-05-24 03:58:22.966 PDT 0009 INFO[0m [certmonitor] [34;1mtrackCertExpiration[0m -> The server TLS certificate will expire on 2025-05-24 10:58:00 +0000 UTC
+[34m2024-05-24 03:58:22.967 PDT 000a INFO[0m [ledgermgmt] [34;1mNewLedgerMgr[0m -> Initializing LedgerMgr
+[34m2024-05-24 03:58:23.012 PDT 000b INFO[0m [leveldbhelper] [34;1mopenDBAndCheckFormat[0m -> DB is empty Setting db format as 2.0
+[34m2024-05-24 03:58:23.015 PDT 000c INFO[0m [blkstorage] [34;1mNewProvider[0m -> Creating new file ledger directory at /home/vm1/hlf-test-multi-org/peer0org1/production/ledgersData/chains/chains
+[34m2024-05-24 03:58:23.041 PDT 000d INFO[0m [leveldbhelper] [34;1mopenDBAndCheckFormat[0m -> DB is empty Setting db format as 2.5
+[34m2024-05-24 03:58:23.057 PDT 000e INFO[0m [leveldbhelper] [34;1mopenDBAndCheckFormat[0m -> DB is empty Setting db format as 2.0
+[34m2024-05-24 03:58:23.097 PDT 000f INFO[0m [leveldbhelper] [34;1mopenDBAndCheckFormat[0m -> DB is empty Setting db format as 2.0
+[34m2024-05-24 03:58:23.103 PDT 0010 INFO[0m [ledgermgmt] [34;1mNewLedgerMgr[0m -> Initialized LedgerMgr
+[34m2024-05-24 03:58:23.104 PDT 0011 INFO[0m [gossip.service] [34;1mNew[0m -> Initialize gossip with endpoint 192.168.0.151:7051
+[34m2024-05-24 03:58:23.106 PDT 0012 INFO[0m [gossip.gossip] [34;1mNew[0m -> Creating gossip service with self membership of Endpoint: 192.168.0.151:7051, InternalEndpoint: 192.168.0.151:7051, PKI-ID: 662b4042d447e10f332e859748af5a412b11d269254ad3105a44600789eb3cea, Metadata: 
+[34m2024-05-24 03:58:23.106 PDT 0013 INFO[0m [lifecycle] [34;1mInitializeLocalChaincodes[0m -> Initialized lifecycle cache with 0 already installed chaincodes
+[34m2024-05-24 03:58:23.107 PDT 0014 INFO[0m [nodeCmd] [34;1mcomputeChaincodeEndpoint[0m -> Entering computeChaincodeEndpoint with peerHostname: 192.168.0.151
+[34m2024-05-24 03:58:23.107 PDT 0015 INFO[0m [nodeCmd] [34;1mcomputeChaincodeEndpoint[0m -> Exit with ccEndpoint: 192.168.0.151:7052
+[34m2024-05-24 03:58:23.108 PDT 0016 INFO[0m [gossip.gossip] [34;1mstart[0m -> Gossip instance 192.168.0.151:7051 started
+[34m2024-05-24 03:58:23.108 PDT 0017 INFO[0m [sccapi] [34;1mDeploySysCC[0m -> deploying system chaincode 'lscc'
+[34m2024-05-24 03:58:23.109 PDT 0018 INFO[0m [sccapi] [34;1mDeploySysCC[0m -> deploying system chaincode 'cscc'
+[34m2024-05-24 03:58:23.109 PDT 0019 INFO[0m [sccapi] [34;1mDeploySysCC[0m -> deploying system chaincode 'qscc'
+[34m2024-05-24 03:58:23.109 PDT 001a INFO[0m [sccapi] [34;1mDeploySysCC[0m -> deploying system chaincode '_lifecycle'
+[34m2024-05-24 03:58:23.109 PDT 001b INFO[0m [nodeCmd] [34;1mserve[0m -> Deployed system chaincodes
+[34m2024-05-24 03:58:23.109 PDT 001c INFO[0m [discovery] [34;1mNewService[0m -> Created with config TLS: true, authCacheMaxSize: 1000, authCachePurgeRatio: 0.750000
+[34m2024-05-24 03:58:23.110 PDT 001d INFO[0m [nodeCmd] [34;1mserve[0m -> Discovery service activated
+[34m2024-05-24 03:58:23.110 PDT 001e INFO[0m [nodeCmd] [34;1mserve[0m -> Starting peer with Gateway enabled
+[34m2024-05-24 03:58:23.110 PDT 001f INFO[0m [nodeCmd] [34;1mserve[0m -> Starting peer with ID=[peer0.org1.example.com], network ID=[dev], address=[192.168.0.151:7051]
+[34m2024-05-24 03:58:23.112 PDT 0020 INFO[0m [nodeCmd] [34;1mserve[0m -> Started peer with ID=[peer0.org1.example.com], network ID=[dev], address=[192.168.0.151:7051]
+[34m2024-05-24 03:58:23.112 PDT 0021 INFO[0m [kvledger] [34;1mLoadPreResetHeight[0m -> Loading prereset height from path [/home/vm1/hlf-test-multi-org/peer0org1/production/ledgersData/chains]
+[34m2024-05-24 03:58:23.112 PDT 0022 INFO[0m [blkstorage] [34;1mpreResetHtFiles[0m -> No active channels passed
