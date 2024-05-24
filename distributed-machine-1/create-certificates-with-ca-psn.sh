@@ -2,8 +2,6 @@
 export PATH=${PWD}/../bin:$PATH
 . scripts/utils.sh
 
-set -x
-
 echo
 infoln "Enrolling the CA admin"
 echo
@@ -12,6 +10,7 @@ mkdir -p organizations/peerOrganizations/org1.example.com/
 
 export FABRIC_CA_CLIENT_HOME=${PWD}/organizations/peerOrganizations/org1.example.com/
 
+set -x
 fabric-ca-client enroll -u https://admin:adminpw@192.168.0.151:7054 --caname ca-org1 --tls.certfiles "${PWD}/organizations/fabric-ca/org1/ca-cert.pem"
 { set +x; } 2>/dev/null
 
@@ -123,7 +122,6 @@ fabric-ca-client enroll -u https://peer1:peer1pw@192.168.0.151:7054 --caname ca-
 cp "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/tlscacerts/"* "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
 cp "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/signcerts/"* "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/server.crt"
 cp "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/keystore/"* "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/server.key"
-
 
 echo
 infoln "Generating the user msp"
