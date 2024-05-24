@@ -1,6 +1,0 @@
-=============== May 23, 2024 (PDT) ===============
-18:57:46.800983 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-18:57:46.806592 db@open opening
-18:57:46.806866 version@stat F·[] S·0B[] Sc·[]
-18:57:46.809514 db@janitor F·2 G·0
-18:57:46.809535 db@open done T·2.929072ms
