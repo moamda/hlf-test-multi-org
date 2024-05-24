@@ -91,17 +91,26 @@ export PATH=${PWD}/../bin:$PATH
 # updateAnchorPeer 
 
 
-# # create channel artifacts
-# configtxgen -profile ChannelUsingRaft -outputBlock ./channel-artifacts/mychannel.block -channelID mychannel
-# sleep 2
-
-# export ORDERER_ADMIN_TLS_SIGN_CERT=${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-# export ORDERER_ADMIN_TLS_PRIVATE_KEY=${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.key
-# export ORDERER_CA=${PWD}/organizations/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem
-# export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+export ORDERER_ADMIN_TLS_SIGN_CERT=${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+export ORDERER_ADMIN_TLS_PRIVATE_KEY=${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.key
+export ORDERER_CA=${PWD}/organizations/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem
+export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
 
 
-# # join OSN in channel
-# osnadmin channel join --channelID mychannel --config-block ./channel-artifacts/mychannel.block -o 192.168.0.154:7053 --ca-file "$ORDERER_CA" --client-cert "$ORDERER_ADMIN_TLS_SIGN_CERT" --client-key "$ORDERER_ADMIN_TLS_PRIVATE_KEY" > logs/osnadmin.log 2>&1
+# channel name defaults to "mychannel"
+CHANNEL_NAME="mychannel"
+echo $CHANNEL_NAME
 
-# cat ./logs/osnadmin.log
+
+# create Genesis block
+configtxgen -profile ChannelUsingRaft -outputBlock ./channel-artifacts/mychannel.block -channelID mychannel
+sleep 2
+
+
+# join OSN in channel
+osnadmin channel join --channelID mychannel --config-block ./channel-artifacts/mychannel.block -o 192.168.0.154:7053 --ca-file "$ORDERER_CA" --client-cert "$ORDERER_ADMIN_TLS_SIGN_CERT" --client-key "$ORDERER_ADMIN_TLS_PRIVATE_KEY" > logs/osnadmin.log 2>&1
+cat ./logs/osnadmin.log
+
+
+peer channel fetch config config_block.pb -o $ORDERER_CONTAINER -c $CHANNEL_NAME --tls --cafile $TLS_ROOT_CA
+
