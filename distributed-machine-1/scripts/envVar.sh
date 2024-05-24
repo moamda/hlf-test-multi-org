@@ -13,6 +13,7 @@
 export CORE_PEER_TLS_ENABLED=true
 export ORDERER_CA=${PWD}/organizations/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem
 export PEER0_ORG1_CA=${PWD}/organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
+export PEER1_ORG1_CA=${PWD}/organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
 export PEER0_ORG2_CA=${PWD}/organizations/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem
 export PEER0_ORG3_CA=${PWD}/organizations/peerOrganizations/org3.example.com/tlsca/tlsca.org3.example.com-cert.pem
 
@@ -48,6 +49,44 @@ setGlobals() {
     env | grep CORE
   fi
 }
+
+# setGlobals() {
+#   local USING_ORG=""
+#   if [ -z "$OVERRIDE_ORG" ]; then
+#     USING_ORG=$1
+#   else
+#     USING_ORG="${OVERRIDE_ORG}"
+#   fi
+#   infoln "Using organization ${USING_ORG}"
+
+#   if [ $USING_ORG -eq 1 ]; then
+#     export CORE_PEER_LOCALMSPID="Org1MSP"
+#     export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
+#     export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+
+#     if [ -z "$2" ]; then
+#       PEER=0
+#     else
+#       PEER=$2
+#     fi
+
+#     if [ $PEER -eq 0 ]; then
+#       export CORE_PEER_ADDRESS=192.168.0.151:7051
+#     elif [ $PEER -eq 1 ]; then
+#       export CORE_PEER_ADDRESS=192.168.0.153:7051
+#     else
+#       errorln "Unknown Peer"
+#       return 1
+#     fi
+#   else
+#     errorln "Unknown Organization"
+#     return 1
+#   fi
+
+#   if [ "$VERBOSE" == "true" ]; then
+#     env | grep CORE
+#   fi
+# }
 
 # Set environment variables for use in the CLI container
 setGlobalsCLI() {
