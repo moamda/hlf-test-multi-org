@@ -37,7 +37,7 @@ Organizations:
         Type: Signature
         Rule: "OR('OrdererMSP.admin')"
     OrdererEndpoints:
-      - 192.168.0.154:7050
+      - 192.168.43.154:7050
   - &Org1
     # DefaultOrg defines the organization which is used in the sampleconfig
     # of the fabric.git development environment
@@ -183,7 +183,7 @@ Orderer: &OrdererDefaults
   # as TLS validation.  The preferred way to specify orderer addresses is now
   # to include the OrdererEndpoints item in your org definition
   Addresses:
-    - 192.168.0.154:7050
+    - 192.168.43.154:7050
   # Batch Timeout: The amount of time to wait before creating a batch
   BatchTimeout: 2s
   # Batch Size: Controls the number of messages batched into a block
@@ -264,7 +264,7 @@ Profiles:
       OrdererType: etcdraft
       EtcdRaft:
         Consenters:
-          - Host: 192.168.0.154
+          - Host: 192.168.43.154
             Port: 7050
             ClientTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
             ServerTLSCert: ../organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
