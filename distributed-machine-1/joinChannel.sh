@@ -21,11 +21,11 @@ joinChannel() {
 
 }
 
-
-CHANNEL_NAME="mychannel" # default value is mychannel
+ORG="1"
+CHANNEL_NAME="channel1" # default value is mychannel
 echo $CHANNEL_NAME
 
-BLOCKFILE="./channel-artifacts/${CHANNEL_NAME}.block"
+BLOCKFILE="./channel-artifacts/channel-artifacts/$CHANNEL_NAME/${CHANNEL_NAME}.block"
 
 setGlobals 1
 joinChannel 1

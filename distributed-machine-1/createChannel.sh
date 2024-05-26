@@ -16,25 +16,32 @@ export ORDERER_ADMIN_TLS_PRIVATE_KEY=${PWD}/organizations/ordererOrganizations/e
 
 
 createGenesisBlock() {
-    configtxgen -profile ChannelUsingRaft -outputBlock ./channel-artifacts/${CHANNEL_NAME}.block -channelID mychannel
+    configtxgen -profile ChannelUsingRaft -outputBlock ./channel-artifacts/$CHANNEL_NAME/${CHANNEL_NAME}.block -channelID $CHANNEL_NAME
 
     sleep 2
 }
 
 createChannel() {
-    osnadmin channel join --channelID $CHANNEL_NAME --config-block ./channel-artifacts/${CHANNEL_NAME}.block -o 192.168.43.154:7053 --ca-file "$ORDERER_CA" --client-cert "$ORDERER_ADMIN_TLS_SIGN_CERT" --client-key "$ORDERER_ADMIN_TLS_PRIVATE_KEY" > logs/osnadmin.log 2>&1
+    osnadmin channel join --channelID $CHANNEL_NAME --config-block ./channel-artifacts/$CHANNEL_NAME/${CHANNEL_NAME}.block -o 192.168.43.154:7053 --ca-file "$ORDERER_CA" --client-cert "$ORDERER_ADMIN_TLS_SIGN_CERT" --client-key "$ORDERER_ADMIN_TLS_PRIVATE_KEY" > logs/osnadmin.log 2>&1
 
     cat ./logs/osnadmin.log
 
     sleep 2
 }
 
-
-CHANNEL_NAME="mychannel" #default channel name
+ORG="1"
+CHANNEL_NAME="channel1" 
 echo $CHANNEL_NAME
 
 setGlobals 1 # 1 means which organization is being used.
 
 createGenesisBlock
 createChannel
+
+
+# channel sequence
+# 1 - createGenesisBlock
+# 2 - createChannel
+# 3 - joinChannel
+# 4 - 
 
