@@ -40,8 +40,8 @@ createChannel
 
 
 # channel sequence
-# 1 - createGenesisBlock
-# 2 - createChannel
-# 3 - joinChannel
+# 1 - createGenesisBlock, done by orderer organization
+# 2 - createChannel, done by orderer organization
+# 3 - joinChannel, done by org1 organization
 # 4 - 
 
