@@ -29,15 +29,29 @@ createChannel() {
     sleep 2
 }
 
+setGlobalsForPeer0Org1(){
+    export CORE_PEER_LOCALMSPID="Org1MSP"
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
+    export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+    export CORE_PEER_ADDRESS=192.168.43.151:7051
+}
+
+updateAnchorPeers(){
+    setGlobalsForPeer0Org1
+    # Replace localhost with your orderer's vm IP address
+    peer channel update -o 192.168.43.154:7050 --ordererTLSHostnameOverride orderer.example.com -c $CHANNEL_NAME -f ${CORE_PEER_LOCALMSPID}anchors.tx --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA >&log.txt
+    
+}
+
 ORG="1"
 CHANNEL_NAME="channel1" 
 echo $CHANNEL_NAME
 
-setGlobals 1 # 1 means which organization is being used.
+# setGlobals 1 # 1 means which organization is being used.
 
-createGenesisBlock
-createChannel
-
+# createGenesisBlock
+# createChannel
+updateAnchorPeers
 
 # channel sequence
 # 1 - createGenesisBlock, done by orderer organization
