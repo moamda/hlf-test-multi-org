@@ -1,5 +1,5 @@
 export PATH=${PWD}/../bin:$PATH
-export FABRIC_CFG_PATH=${PWD}
+export FABRIC_CFG_PATH=$PWD/configtx/
 export CORE_PEER_TLS_ENABLED=true
 export ORDERER_CA=${PWD}/organizations/ordererOrganizations/example.com/tlsca/tlsca.example.com-cert.pem
 export PEER0_ORG1_CA=${PWD}/organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
