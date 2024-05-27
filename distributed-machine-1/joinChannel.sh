@@ -29,7 +29,7 @@ createAnchorPeerUpdate() {
   infoln "Generating anchor peer update transaction for Org${ORG} on channel $CHANNEL_NAME"
 
   if [ $ORG -eq 1 ]; then
-    HOST="192.168.43.151"
+    HOST="192.168.0.151"
     PORT=7051
   elif [ $ORG -eq 2 ]; then
     HOST="192.168.43.153"
@@ -61,13 +61,13 @@ setGlobalsForPeer0Org1(){
     export CORE_PEER_LOCALMSPID="Org1MSP"
     export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
     export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-    export CORE_PEER_ADDRESS=192.168.43.151:7051
+    export CORE_PEER_ADDRESS=192.168.0.151:7051
 }
 
 updateAnchorPeers(){
     setGlobalsForPeer0Org1
 
-    peer channel update -o 192.168.43.154:7050 --ordererTLSHostnameOverride orderer.example.com -c $CHANNEL_NAME -f ${CORE_PEER_LOCALMSPID}anchors.tx --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA >&log.txt
+    peer channel update -o 192.168.0.13:7050 --ordererTLSHostnameOverride orderer.example.com -c $CHANNEL_NAME -f ${CORE_PEER_LOCALMSPID}anchors.tx --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA >&log.txt
     cat log.txt
     
 }
