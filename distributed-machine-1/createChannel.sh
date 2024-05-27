@@ -36,6 +36,7 @@ setGlobalsForPeer0Org1(){
     export CORE_PEER_ADDRESS=192.168.43.151:7051
 }
 
+
 updateAnchorPeers(){
     setGlobalsForPeer0Org1
     # Replace localhost with your orderer's vm IP address
@@ -49,9 +50,9 @@ echo $CHANNEL_NAME
 
 # setGlobals 1 # 1 means which organization is being used.
 
-# createGenesisBlock
-# createChannel
-updateAnchorPeers
+createGenesisBlock
+createChannel
+# updateAnchorPeers
 
 # channel sequence
 # 1 - createGenesisBlock, done by orderer organization

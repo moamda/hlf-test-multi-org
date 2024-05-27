@@ -13,7 +13,7 @@
 ################################################################################
 General:
     # Listen address: The IP on which to bind to listen.
-    ListenAddress: 192.168.43.154
+    ListenAddress: 192.168.0.13
 
     # Listen port: The port on which to bind to listen.
     ListenPort: 7050
@@ -121,7 +121,7 @@ General:
     # https://golang.org/pkg/net/http/pprof
     Profile:
         Enabled: false
-        Address: 192.168.43.154:6060
+        Address: 192.168.0.13:6060
 
     # BCCSP configures the blockchain crypto service providers.
     BCCSP:
@@ -309,7 +309,7 @@ Debug:
 ################################################################################
 Operations:
     # host and port for the operations server
-    ListenAddress: 192.168.43.154:8443
+    ListenAddress: 192.168.0.13:8443
 
     # TLS configuration for the operations endpoint
     TLS:
@@ -347,7 +347,7 @@ Metrics:
       Network: udp
 
       # the statsd server address
-      Address: 192.168.43.154:8125
+      Address: 192.168.0.13:8125
 
       # The interval at which locally cached counters and gauges are pushed
       # to statsd; timings are pushed immediately
@@ -365,7 +365,7 @@ Metrics:
 ################################################################################
 Admin:
     # host and port for the admin server
-    ListenAddress: 192.168.43.154:9445
+    ListenAddress: 192.168.0.13:9445
 
     # TLS configuration for the admin endpoint
     TLS:
