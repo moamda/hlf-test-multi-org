@@ -8,6 +8,12 @@ echo
 infoln "Starting peer1 org1"
 echo
 
+
+# copy whole artifacts of org1 to peer1
+mkdir -p /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com
+scp -r vm1@192.168.0.151:/home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com/ /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations
+
+
 mkdir ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/admincerts
 cp ${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/cert.pem ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/admincerts/cert.pem
 
