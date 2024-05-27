@@ -13,7 +13,8 @@ cp ${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.exam
 
 
 export FABRIC_CA_CLIENT_HOME=${PWD}/organizations/peerOrganizations/org1.example.com/
-export FABRIC_CFG_PATH=${PWD}
+# export FABRIC_CFG_PATH=${PWD}
+export FABRIC_CFG_PATH=$PWD/configtx/peer1
 export FABRIC_LOGGING_SPEC=INFO
 #export FABRIC_LOGGING_SPEC=DEBUG
 export CORE_PEER_TLS_ENABLED=true
