@@ -9,11 +9,11 @@ infoln "Starting peer1 org1"
 echo
 
 
-# copy whole artifacts of org1 to peer1 machine
-mkdir -p /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com
 mkdir -p /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/fabric-ca/org1
+scp -r vm1@192.168.0.151:/home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/fabric-ca/org1 /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/fabric-ca
 
-scp -r vm1@192.168.0.151:/home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com/ /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com
+mkdir -p /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com
+scp -r vm1@192.168.0.151:/home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations
 
 
 mkdir ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/admincerts
@@ -30,7 +30,7 @@ export CORE_PEER_PROFILE_ENABLED=false
 export CORE_PEER_TLS_CERT_FILE=${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/server.crt
 export CORE_PEER_TLS_KEY_FILE=${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/server.key
 export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
-      # Peer specific variables
+# Peer specific variables
 export CORE_PEER_ID=peer1.org1.example.com
 export CORE_PEER_ADDRESS=192.168.0.12:7051
 export CORE_PEER_LISTENADDRESS=192.168.0.12:7051
