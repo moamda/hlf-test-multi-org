@@ -115,7 +115,7 @@ infoln "Generating the peer1-tls certificates, use --csr.hosts to specify Subjec
 echo
 
 set -x
-fabric-ca-client enroll -u https://peer1:peer1pw@192.168.0.151:7054 --caname ca-org1 -M "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls" --enrollment.profile tls --csr.hosts peer1.org1.example.com --csr.hosts 192.168.0.151 --tls.certfiles "${PWD}/organizations/fabric-ca/org1/ca-cert.pem"
+fabric-ca-client enroll -u https://peer1:peer1pw@192.168.0.151:7054 --caname ca-org1 -M "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls" --enrollment.profile tls --csr.hosts peer1.org1.example.com --csr.hosts 192.168.0.12 --tls.certfiles "${PWD}/organizations/fabric-ca/org1/ca-cert.pem"
 { set +x; } 2>/dev/null
 
 # Copy the tls CA cert, server cert, server keystore to well known file names in the peer's tls directory that are referenced by peer startup config
