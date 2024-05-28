@@ -8,7 +8,9 @@ echo
 infoln "Starting peer1 org1"
 echo
 
+mkdir logs
 
+# copy entire org1 artifacts to peer1 machine.
 mkdir -p /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/fabric-ca/org1
 scp -r vm1@192.168.0.151:/home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/fabric-ca/org1 /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/fabric-ca
 
@@ -44,8 +46,8 @@ export CORE_OPERATIONS_LISTENADDRESS=192.168.0.12:9444
 export CORE_METRICS_PROVIDER=prometheus
 export CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG={"peername":"peer1org1"}
 export CORE_CHAINCODE_EXECUTETIMEOUT=300s
-export CORE_PEER_FILESYSTEMPATH=/home/vm1/hlf-test-multi-org/peer1org1/production
-export CORE_LEDGER_SNAPSHOTS_ROOTDIR=/home/vm1/hlf-test-multi-org/org1/peer1/data/snapshots
+export CORE_PEER_FILESYSTEMPATH=/home/vm2/hlf-test-multi-org/peer1org1/production
+export CORE_LEDGER_SNAPSHOTS_ROOTDIR=/home/vm2/hlf-test-multi-org/org1/peer1/data/snapshots
 
 peer node start > logs/peer1-org1.log 2>&1 &
 
