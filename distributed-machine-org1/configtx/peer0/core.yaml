@@ -261,23 +261,30 @@ peer:
     clientAuthRequired: false
     # X.509 certificate used for TLS server
     cert:
-      file: /home/vm3/hlf-test-multi-org/distributed-machine-orderer/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
+      file: /home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
+      # file: /home/vm3/hlf-test-multi-org/distributed-machine-orderer/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
+      # file: tls/server.crt
     # Private key used for TLS server
     key:
-      file: /home/vm3/hlf-test-multi-org/distributed-machine-orderer/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key
+      file: /home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key
+      # file: /home/vm3/hlf-test-multi-org/distributed-machine-orderer/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.key
+      # file: tls/server.key
     # rootcert.file represents the trusted root certificate chain used for verifying certificates
     # of other nodes during outbound connections.
     # It is not required to be set, but can be used to augment the set of TLS CA certificates
     # available from the MSPs of each channel’s configuration.
     rootcert:
-      file: /home/vm3/hlf-test-multi-org/distributed-machine-orderer/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+      file: /home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+      # file: /home/vm3/hlf-test-multi-org/distributed-machine-orderer/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+      # file: tls/ca.crt
     # If mutual TLS is enabled, clientRootCAs.files contains a list of additional root certificates
     # used for verifying certificates of client connections.
     # It augments the set of TLS CA certificates available from the MSPs of each channel’s configuration.
     # Minimally, set your organization's TLS CA root certificate so that the peer can receive join channel requests.
     clientRootCAs:
       files:
-        - /home/vm3/hlf-test-multi-org/distributed-machine-orderer/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+        - /home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+        # - /home/vm3/hlf-test-multi-org/distributed-machine-orderer/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
     # Private key used for TLS when making client connections.
     # If not set, peer.tls.key.file will be used instead
     clientKey:
@@ -295,7 +302,8 @@ peer:
   # Path on the file system where peer will store data (eg ledger). This
   # location must be access control protected to prevent unintended
   # modification that might corrupt the peer operations.
-  fileSystemPath: /home/vm3/hlf-test-multi-org/production
+  fileSystemPath: /home/vm1/hlf-test-multi-org/production
+  # fileSystemPath: /home/vm3/hlf-test-multi-org/production
   # BCCSP (Blockchain crypto provider): Select which crypto implementation or
   # library to use
   BCCSP:
@@ -571,7 +579,8 @@ chaincode:
     format: '%{color}%{time:2006-01-02 15:04:05.000 MST} [%{module}] %{shortfunc} -> %{level:.4s} %{id:03x}%{color:reset} %{message}'
   externalBuilders:
     - name: ccaas_builder
-      path: /home/vm3/hlf-test-multi-org/distributed-machine-orderer/builders/ccaas
+      path: /home/vm1/hlf-test-multi-org/distributed-machine-org1/builders/ccaas
+      # path: /home/vm3/hlf-test-multi-org/distributed-machine-orderer/builders/ccaas
       propagateEnvironment:
         - CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG
 ###############################################################################
@@ -651,7 +660,8 @@ ledger:
     deprioritizedDataReconcilerInterval: 60m
   snapshots:
     # Path on the file system where peer will store ledger snapshots
-    rootDir: /home/vm3/hlf-test-multi-org/production/snapshots
+    rootDir: /home/vm1/hlf-test-multi-org/production/snapshots
+    # rootDir: /home/vm3/hlf-test-multi-org/production/snapshots
 ###############################################################################
 #
 #    Operations section
