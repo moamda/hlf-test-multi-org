@@ -64,7 +64,7 @@ setGlobalsForPeer0Org1(){
 
 setGlobalsForPeer1Org1(){
     export CORE_PEER_LOCALMSPID="Org1MSP"
-    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
+    export CORE_PEER_TLS_ROOTCERT_FILE=$PEER1_ORG1_CA
     export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
     export CORE_PEER_ADDRESS=192.168.0.12:7051
 }
@@ -76,8 +76,14 @@ echo $CHANNEL_NAME
 
 BLOCKFILE="./channel-artifacts/$CHANNEL_NAME/${CHANNEL_NAME}.block"
 
-setGlobals 1
-joinChannel 1
+# setGlobals 1
+
+setGlobalsForPeer0Org1
+joinChannel 
+
+setGlobalsForPeer1Org1
+joinChannel 
+
 createAnchorPeerUpdate 
 updateAnchorPeer
 
