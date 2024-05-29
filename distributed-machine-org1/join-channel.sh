@@ -40,9 +40,9 @@ createAnchorPeerUpdate() {
   jq '.channel_group.groups.Application.groups.'${CORE_PEER_LOCALMSPID}'.values += {"AnchorPeers":{"mod_policy": "Admins","value":{"anchor_peers": [{"host": "'$HOST'","port": '$PORT'}]},"version": "0"}}' ${CORE_PEER_LOCALMSPID}config.json > ${CORE_PEER_LOCALMSPID}modified_config.json
   { set +x; } 2>/dev/null
 
-  Compute a config update, based on the differences between 
-  {orgmsp}config.json and {orgmsp}modified_config.json, write
-  it as a transaction to {orgmsp}anchors.tx
+  # Compute a config update, based on the differences between 
+  # {orgmsp}config.json and {orgmsp}modified_config.json, write
+  # it as a transaction to {orgmsp}anchors.tx
   createConfigUpdate ${CHANNEL_NAME} ${CORE_PEER_LOCALMSPID}config.json ${CORE_PEER_LOCALMSPID}modified_config.json ${CORE_PEER_LOCALMSPID}anchors.tx
 }
 
@@ -76,23 +76,27 @@ echo $CHANNEL_NAME
 
 BLOCKFILE="./channel-artifacts/$CHANNEL_NAME/${CHANNEL_NAME}.block"
 
-# setGlobals 1
-
 # set env var path of peer0 of org1 then join to channel.
 setGlobalsForPeer0Org1 
 joinChannel 
-peer channel list # Verify that peer0 has successfully joined the channel.
+
+# not mandatory
+infoln "Verify if peer0 is joined to the channel '$CHANNEL_NAME'"
+peer channel list 
+sleep 2
 
 # create anchor peer to update the channel
 createAnchorPeerUpdate 
 updateAnchorPeer
 
+# set env var path of peer1 of org1 then join to channel.
 setGlobalsForPeer1Org1
 joinChannel 
-peer channel list # Verify that peer1 has successfully joined the channel.
 
-peer channel getinfo -c $CHANNEL_NAME
-
+# not mandatory
+infoln "Verify if peer1 is joined to the channel '$CHANNEL_NAME'"
+peer channel list 
+sleep 2
 
 
 
