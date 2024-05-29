@@ -32,7 +32,7 @@ ORG="1"
 CHANNEL_NAME="channel1" 
 echo $CHANNEL_NAME
 
-setGlobals 1 # 1 means which organization is being used.
+# setGlobals 1 # 1 means which organization is being used.
 
 createGenesisBlock
 createChannel
@@ -41,5 +41,15 @@ createChannel
 # 1 - createGenesisBlock, done by orderer org
 # 2 - createChannel, done by orderer org
 # 3 - joinChannel, done by org1 
-# 4 - createAnchorPeerUpdate
+# 4 - createAnchorPeerUpdate, done by org1
+# 5 - updateAnchorPeer, done by org1
 
+    # Note !!!
+    # Updating anchor peer is made once only by org1
+    # if you have other peers are not yet join
+    # just set the environment variable of that specific peer of organization
+    # then you can join that peer to the channel.
+
+# Set the environtment variable of peer1 to join channel
+# 6 - 'setGlobals 1' or use the function 'setGlobalsForPeer1Org1'
+# 7 - joinChannel

@@ -78,14 +78,20 @@ BLOCKFILE="./channel-artifacts/$CHANNEL_NAME/${CHANNEL_NAME}.block"
 
 # setGlobals 1
 
-setGlobalsForPeer0Org1
+# set env var path of peer0 of org1 then join to channel.
+setGlobalsForPeer0Org1 
 joinChannel 
+peer channel list # Verify that peer0 has successfully joined the channel.
+
+# create anchor peer to update the channel
+createAnchorPeerUpdate 
+updateAnchorPeer
 
 setGlobalsForPeer1Org1
 joinChannel 
+peer channel list # Verify that peer1 has successfully joined the channel.
 
-createAnchorPeerUpdate 
-updateAnchorPeer
+
 
 
 
