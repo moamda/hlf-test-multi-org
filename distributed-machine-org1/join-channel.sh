@@ -91,6 +91,8 @@ setGlobalsForPeer1Org1
 joinChannel 
 peer channel list # Verify that peer1 has successfully joined the channel.
 
+peer channel getinfo -c $CHANNEL_NAME
+
 
 
 
