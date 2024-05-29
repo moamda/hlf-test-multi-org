@@ -23,10 +23,15 @@ joinChannel() {
 
 createAnchorPeerUpdate() {
     CORE_PEER_LOCALMSPID=Org1MSP
+
+    echo
     infoln "Fetching channel config for channel $CHANNEL_NAME"
     fetchChannelConfig $ORG $CHANNEL_NAME ${CORE_PEER_LOCALMSPID}config.json
+    echo
 
+  echo
   infoln "Generating anchor peer update transaction for Org${ORG} on channel $CHANNEL_NAME"
+  echo
 
   if [ $ORG -eq 1 ]; then
     HOST="192.168.0.151"
@@ -48,6 +53,7 @@ createAnchorPeerUpdate() {
 
 updateAnchorPeer() {
   CORE_PEER_LOCALMSPID=Org1MSP
+
   peer channel update -o 192.168.0.13:7050 --ordererTLSHostnameOverride 192.168.0.13 -c $CHANNEL_NAME -f ${CORE_PEER_LOCALMSPID}anchors.tx --tls --cafile "$ORDERER_CA" >&log.txt
   res=$?
   cat log.txt
@@ -72,7 +78,7 @@ setGlobalsForPeer1Org1(){
 
 ORG="1"
 CHANNEL_NAME="channel1" #rename onto desired channel name
-echo $CHANNEL_NAME
+echo "channel: $CHANNEL_NAME"
 
 BLOCKFILE="./channel-artifacts/$CHANNEL_NAME/${CHANNEL_NAME}.block"
 
@@ -81,9 +87,12 @@ setGlobalsForPeer0Org1
 joinChannel 
 
 # not mandatory
+echo
 infoln "Verify if peer0 is joined to the channel '$CHANNEL_NAME'"
 peer channel list 
+echo
 sleep 2
+
 
 # create anchor peer to update the channel
 createAnchorPeerUpdate 
@@ -94,8 +103,10 @@ setGlobalsForPeer1Org1
 joinChannel 
 
 # not mandatory
+echo
 infoln "Verify if peer1 is joined to the channel '$CHANNEL_NAME'"
 peer channel list 
+echo
 sleep 2
 
 
