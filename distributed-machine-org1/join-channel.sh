@@ -27,38 +27,38 @@ joinChannel() {
 }
 
 createAnchorPeerUpdate() {
-    CORE_PEER_LOCALMSPID=Org1MSP
 
     echo
     infoln "Fetching channel config for channel $CHANNEL_NAME"
     fetchChannelConfig $ORG $CHANNEL_NAME ${CORE_PEER_LOCALMSPID}config.json
     echo
 
-  echo
-  infoln "Generating anchor peer update transaction for Org${ORG} on channel $CHANNEL_NAME"
-  echo
+    echo
+    infoln "Generating anchor peer update transaction for Org${ORG} on channel $CHANNEL_NAME"
+    echo
 
-  if [ $ORG -eq 1 ]; then
-    HOST="192.168.0.151"
-    PORT=7051
-  else
-    errorln "Org${ORG} unknown"
-  fi
+    if [ $ORG -eq 1 ]; then
+      P0HOST="192.168.0.151"
+      P0PORT=7051
+      P1HOST="192.168.0.12"
+      P1PORT=7051
+    else
+      errorln "Org${ORG} unknown"
+    fi
 
-  set -x
-  # Modify the configuration to append the anchor peer 
-  jq '.channel_group.groups.Application.groups.'${CORE_PEER_LOCALMSPID}'.values += {"AnchorPeers":{"mod_policy": "Admins","value":{"anchor_peers": [{"host": "'$HOST'","port": '$PORT'}]},"version": "0"}}' ${CORE_PEER_LOCALMSPID}config.json > ${CORE_PEER_LOCALMSPID}modified_config.json
-  { set +x; } 2>/dev/null
+    set -x
+    # Modify the configuration to append the anchor peer 
+    jq '.channel_group.groups.Application.groups.'${CORE_PEER_LOCALMSPID}'.values += {"AnchorPeers":{"mod_policy": "Admins","value":{"anchor_peers": [{"host": "'$P0HOST'","port": '$P0PORT'},{"host": "'$P1HOST'","port": '$P1PORT'}]},"version": "0"}}' ${CORE_PEER_LOCALMSPID}config.json > ${CORE_PEER_LOCALMSPID}modified_config.json
+    { set +x; } 2>/dev/null
 
-  # Compute a config update, based on the differences between 
-  # {orgmsp}config.json and {orgmsp}modified_config.json, write
-  # it as a transaction to {orgmsp}anchors.tx
-  createConfigUpdate ${CHANNEL_NAME} ${CORE_PEER_LOCALMSPID}config.json ${CORE_PEER_LOCALMSPID}modified_config.json ${CORE_PEER_LOCALMSPID}anchors.tx
+    # Compute a config update, based on the differences between 
+    # {orgmsp}config.json and {orgmsp}modified_config.json, write
+    # it as a transaction to {orgmsp}anchors.tx
+    createConfigUpdate ${CHANNEL_NAME} ${CORE_PEER_LOCALMSPID}config.json ${CORE_PEER_LOCALMSPID}modified_config.json ${CORE_PEER_LOCALMSPID}anchors.tx
 }
 
 updateAnchorPeer() {
   setGlobalsForPeer0Org1
-  
   peer channel update -o 192.168.0.13:7050 --ordererTLSHostnameOverride 192.168.0.13 -c $CHANNEL_NAME -f ${CORE_PEER_LOCALMSPID}anchors.tx --tls --cafile "$ORDERER_CA" >&log.txt
   res=$?
   cat log.txt
@@ -89,19 +89,10 @@ echo
 echo "channel: $CHANNEL_NAME"
 echo
 
-
-
-# set env var path of peer0 of org1 then join to channel.
-# setGlobalsForPeer0Org1 
 joinChannel 
+createAnchorPeerUpdate 
+updateAnchorPeer
 
-# set env var path of peer1 of org1 then join to channel.
-# setGlobalsForPeer1Org1
-# joinChannel 
-
-# # create anchor peer to update the channel
-# createAnchorPeerUpdate 
-# updateAnchorPeer
 
 
 
