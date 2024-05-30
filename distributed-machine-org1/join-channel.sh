@@ -27,7 +27,6 @@ joinChannel() {
 }
 
 createAnchorPeerUpdate() {
-
     echo
     infoln "Fetching channel config for channel $CHANNEL_NAME"
     fetchChannelConfig $ORG $CHANNEL_NAME ${CORE_PEER_LOCALMSPID}config.json
@@ -38,9 +37,9 @@ createAnchorPeerUpdate() {
     echo
 
     if [ $ORG -eq 1 ]; then
-      P0HOST="192.168.0.151"
+      P0HOST="192.168.0.21"
       P0PORT=7051
-      P1HOST="192.168.0.12"
+      P1HOST="192.168.0.22"
       P1PORT=7051
     else
       errorln "Org${ORG} unknown"
@@ -70,14 +69,14 @@ setGlobalsForPeer0Org1(){
     export CORE_PEER_LOCALMSPID="Org1MSP"
     export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
     export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-    export CORE_PEER_ADDRESS=192.168.0.151:7051
+    export CORE_PEER_ADDRESS=192.168.0.21:7051
 }
 
 setGlobalsForPeer1Org1(){
     export CORE_PEER_LOCALMSPID="Org1MSP"
     export CORE_PEER_TLS_ROOTCERT_FILE=$PEER1_ORG1_CA
     export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-    export CORE_PEER_ADDRESS=192.168.0.12:7051
+    export CORE_PEER_ADDRESS=192.168.0.22:7051
 }
 
 

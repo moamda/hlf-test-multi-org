@@ -5,7 +5,7 @@ export PATH=${PWD}/../bin:$PATH
 . scripts/utils.sh
 
 echo
-infoln "Staring orderer"
+infoln "Starting orderer service node"
 echo
 
 mkdir -p  ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/admincerts

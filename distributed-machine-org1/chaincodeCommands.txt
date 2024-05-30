@@ -29,8 +29,8 @@ peer lifecycle chaincode approveformyorg -o 192.168.0.13:7050 --ordererTLSHostna
 peer lifecycle chaincode commit -o 192.168.0.13:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile $ORDERER_CA \
 --channelID channel1 \
 --name testreportcc \
---peerAddresses 192.168.0.151:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
---peerAddresses 192.168.0.153:9051 --tlsRootCertFiles $PEER0_ORG2_CA \
+--peerAddresses 192.168.0.21:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
+--peerAddresses 192.168.0.22:7051 --tlsRootCertFiles $PEER1_ORG1_CA \
 --version 1.0.1 \
 --sequence 1
 
@@ -52,8 +52,8 @@ peer chaincode query \
 peer chaincode invoke -o 192.168.0.13:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile $ORDERER_CA \
 -C channel1 \
 -n testreportcc \
---peerAddresses 192.168.0.151:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
---peerAddresses 192.168.0.153:9051 --tlsRootCertFiles $PEER0_ORG2_CA \
+--peerAddresses 192.168.0.21:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
+--peerAddresses 192.168.0.22:7051 --tlsRootCertFiles $PEER1_ORG1_CA \
 -c '{"Args":["CreateAsset","tsr100","techy","mojojojo","05/13/2024"]}'
 
 
@@ -61,6 +61,6 @@ peer chaincode invoke -o 192.168.0.13:7050 --ordererTLSHostnameOverride orderer.
 peer chaincode invoke -o 192.168.0.13:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile $ORDERER_CA \
 -C channel1 \
 -n testreportcc \
---peerAddresses 192.168.0.151:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
---peerAddresses 192.168.0.153:9051 --tlsRootCertFiles $PEER0_ORG2_CA \
+--peerAddresses 192.168.0.21:7051 --tlsRootCertFiles $PEER0_ORG1_CA \
+--peerAddresses 192.168.0.22:7051 --tlsRootCertFiles $PEER1_ORG1_CA \
 -c '{"function":"InitLedger","Args":[]}'

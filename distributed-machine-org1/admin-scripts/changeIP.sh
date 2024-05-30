@@ -5,7 +5,7 @@ clear
 # Define folder name
 # Parent directory
 parentFolder="../"
-ipList="../../distributed-machine-1/admin-scripts/ip-list.txt"
+ipList="../../distributed-machine-org1/admin-scripts/ip-list.txt"
 
 # List of Operations.
 echo " ---------------------------------- "
@@ -27,7 +27,7 @@ case $operation in
     # Display folder used,
     # Display (PWD) directory,
     # Display IP addresses found.
-    echo -e "\e[0;33mSelected folder: $parentFolder"distributed-machine-1"\e[0m"
+    echo -e "\e[0;33mSelected folder: $parentFolder"distributed-machine-org1"\e[0m"
     echo -e "\e[0;33mCurrent directory of script: $(pwd)\e[0m"
     echo -e "\e[0;33mIP addresses found;\e[0m"
 

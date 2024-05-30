@@ -6,6 +6,7 @@ mkdir logs
 
 echo
 infoln "Starting ca orderer"
+echo
 
 export FABRIC_CA_HOME=./organizations/fabric-ca/ordererOrg
 export FABRIC_CA_SERVER_CA_NAME=ca-orderer
@@ -17,5 +18,5 @@ export FABRIC_CA_SERVER_CSR_HOSTS="localhost,192.168.0.13"
 
 fabric-ca-server start -b admin:adminpw -d > logs/ca-orderer.log 2>&1 &
 
-successln "Done..."
+
 

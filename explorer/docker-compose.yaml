@@ -47,7 +47,7 @@ services:
     volumes:
       - ./config.json:/opt/explorer/app/platform/fabric/config.json
       - ./connection-profile:/opt/explorer/app/platform/fabric/connection-profile
-      - /home/vm1/hyperledger/fabric/fabric-samples/explorer/organizations:/tmp/crypto
+      - /home/vm1/hlf-test-multi-org/explorer/organizations:/tmp/crypto
       - walletstore:/opt/explorer/wallet
     ports:
       - 8080:8080

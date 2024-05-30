@@ -95,4 +95,4 @@ rm -rf /home/vm3/hlf-test-multi-org/distributed-machine-orderer/Org1MSPmodified_
 rm -rf /home/vm3/hlf-test-multi-org/distributed-machine-orderer/original_config.pb
 
 #remove chaincode added files
-rm -rf /home/vm1/hlf-test-multi-org/distributed-machine-orderer/basic.tar.gz
+rm -rf /home/vm1/hlf-test-multi-org/distributed-machine-orderer/testreportcc.tar.gz
