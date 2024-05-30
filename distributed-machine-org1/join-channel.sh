@@ -16,8 +16,13 @@ export ORDERER_ADMIN_TLS_PRIVATE_KEY=${PWD}/organizations/ordererOrganizations/e
 
 
 joinChannel() {
+    setGlobalsForPeer0Org1
     peer channel join -b $BLOCKFILE > logs/$CHANNEL_NAME.log
-    sleep 2
+    sleep 1
+
+    setGlobalsForPeer1Org1
+    peer channel join -b $BLOCKFILE > logs/$CHANNEL_NAME.log
+    sleep 1
 
 }
 
@@ -52,8 +57,8 @@ createAnchorPeerUpdate() {
 }
 
 updateAnchorPeer() {
-  CORE_PEER_LOCALMSPID=Org1MSP
-
+  setGlobalsForPeer0Org1
+  
   peer channel update -o 192.168.0.13:7050 --ordererTLSHostnameOverride 192.168.0.13 -c $CHANNEL_NAME -f ${CORE_PEER_LOCALMSPID}anchors.tx --tls --cafile "$ORDERER_CA" >&log.txt
   res=$?
   cat log.txt
@@ -78,36 +83,27 @@ setGlobalsForPeer1Org1(){
 
 ORG="1"
 CHANNEL_NAME="channel1" #rename onto desired channel name
-echo "channel: $CHANNEL_NAME"
-
 BLOCKFILE="./channel-artifacts/$CHANNEL_NAME/${CHANNEL_NAME}.block"
 
+echo
+echo "channel: $CHANNEL_NAME"
+echo
+
+
+
 # set env var path of peer0 of org1 then join to channel.
-setGlobalsForPeer0Org1 
+# setGlobalsForPeer0Org1 
 joinChannel 
-
-# not mandatory
-echo
-infoln "Verify if peer0 is joined to the channel '$CHANNEL_NAME'"
-peer channel list 
-echo
-sleep 2
-
-
-# create anchor peer to update the channel
-createAnchorPeerUpdate 
-updateAnchorPeer
 
 # set env var path of peer1 of org1 then join to channel.
-setGlobalsForPeer1Org1
-joinChannel 
+# setGlobalsForPeer1Org1
+# joinChannel 
 
-# not mandatory
-echo
-infoln "Verify if peer1 is joined to the channel '$CHANNEL_NAME'"
-peer channel list 
-echo
-sleep 2
+# # create anchor peer to update the channel
+# createAnchorPeerUpdate 
+# updateAnchorPeer
+
+
 
 
 
