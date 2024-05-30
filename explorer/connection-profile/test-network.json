@@ -19,7 +19,7 @@
 		}
 	},
 	"channels": {
-		"mychannel": {
+		"channel1": {
 			"peers": {
 				"peer0.org1.example.com": {}
 			}
@@ -29,7 +29,7 @@
 		"Org1MSP": {
 			"mspid": "Org1MSP",
 			"adminPrivateKey": {
-				"path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/47d8d749b61e1806bb70a3605753daf46754310a5ab57333b5615269aaf79e71_sk"
+				"path": "/tmp/crypto/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/9fc2b9d2f0178f120f8bc39f53d97d87fe764d88d9dd64afa49245e130ea341f_sk"
 			},
 			"peers": ["peer0.org1.example.com"],
 			"signedCert": {
@@ -42,7 +42,7 @@
 			"tlsCACerts": {
 				"path": "/tmp/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt"
 			},
-			"url": "grpcs://1.1.1.1:7051"
+			"url": "grpcs://192.168.0.151:7051"
 		}
 	}
 }
