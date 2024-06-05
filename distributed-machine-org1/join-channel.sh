@@ -37,9 +37,9 @@ createAnchorPeerUpdate() {
     echo
 
     if [ $ORG -eq 1 ]; then
-      P0HOST="192.168.0.21"
+      P0HOST="192.168.0.71"
       P0PORT=7051
-      P1HOST="192.168.0.22"
+      P1HOST="192.168.0.72"
       P1PORT=7051
     else
       errorln "Org${ORG} unknown"
@@ -58,7 +58,7 @@ createAnchorPeerUpdate() {
 
 updateAnchorPeer() {
   setGlobalsForPeer0Org1
-  peer channel update -o 192.168.0.13:7050 --ordererTLSHostnameOverride 192.168.0.13 -c $CHANNEL_NAME -f ${CORE_PEER_LOCALMSPID}anchors.tx --tls --cafile "$ORDERER_CA" >&log.txt
+  peer channel update -o 192.168.0.73:7050 --ordererTLSHostnameOverride 192.168.0.73 -c $CHANNEL_NAME -f ${CORE_PEER_LOCALMSPID}anchors.tx --tls --cafile "$ORDERER_CA" >&log.txt
   res=$?
   cat log.txt
   verifyResult $res "Anchor peer update failed"
@@ -69,14 +69,14 @@ setGlobalsForPeer0Org1(){
     export CORE_PEER_LOCALMSPID="Org1MSP"
     export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG1_CA
     export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-    export CORE_PEER_ADDRESS=192.168.0.21:7051
+    export CORE_PEER_ADDRESS=192.168.0.71:7051
 }
 
 setGlobalsForPeer1Org1(){
     export CORE_PEER_LOCALMSPID="Org1MSP"
     export CORE_PEER_TLS_ROOTCERT_FILE=$PEER1_ORG1_CA
     export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
-    export CORE_PEER_ADDRESS=192.168.0.22:7051
+    export CORE_PEER_ADDRESS=192.168.0.72:7051
 }
 
 

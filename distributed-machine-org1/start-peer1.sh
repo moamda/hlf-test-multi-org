@@ -12,10 +12,10 @@ mkdir logs
 
 # copy entire org1 artifacts to peer1 machine.
 mkdir -p /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/fabric-ca/org1
-scp -r vm1@192.168.0.21:/home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/fabric-ca/org1 /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/fabric-ca
+scp -r vm1@192.168.0.71:/home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/fabric-ca/org1 /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/fabric-ca
 
 mkdir -p /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com
-scp -r vm1@192.168.0.21:/home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations
+scp -r vm1@192.168.0.71:/home/vm1/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations/org1.example.com /home/vm2/hlf-test-multi-org/distributed-machine-org1/organizations/peerOrganizations
 
 
 mkdir ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp/admincerts
@@ -34,15 +34,15 @@ export CORE_PEER_TLS_KEY_FILE=${PWD}/organizations/peerOrganizations/org1.exampl
 export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt
 # Peer specific variables
 export CORE_PEER_ID=peer1.org1.example.com
-export CORE_PEER_ADDRESS=192.168.0.22:7051
-export CORE_PEER_LISTENADDRESS=192.168.0.22:7051
-export CORE_PEER_CHAINCODEADDRESS=192.168.0.22:7052
-export CORE_PEER_CHAINCODELISTENADDRESS=192.168.0.22:7052
-export CORE_PEER_GOSSIP_BOOTSTRAP=192.168.0.22:7051
-export CORE_PEER_GOSSIP_EXTERNALENDPOINT=192.168.0.22:7051
+export CORE_PEER_ADDRESS=192.168.0.72:7051
+export CORE_PEER_LISTENADDRESS=192.168.0.72:7051
+export CORE_PEER_CHAINCODEADDRESS=192.168.0.72:7052
+export CORE_PEER_CHAINCODELISTENADDRESS=192.168.0.72:7052
+export CORE_PEER_GOSSIP_BOOTSTRAP=192.168.0.72:7051
+export CORE_PEER_GOSSIP_EXTERNALENDPOINT=192.168.0.72:7051
 export CORE_PEER_LOCALMSPID=Org1MSP
 export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp
-export CORE_OPERATIONS_LISTENADDRESS=192.168.0.22:9444
+export CORE_OPERATIONS_LISTENADDRESS=192.168.0.72:9444
 export CORE_METRICS_PROVIDER=prometheus
 export CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG={"peername":"peer1org1"}
 export CORE_CHAINCODE_EXECUTETIMEOUT=300s
