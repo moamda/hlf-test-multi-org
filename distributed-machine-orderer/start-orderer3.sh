@@ -5,15 +5,15 @@ export PATH=${PWD}/../bin:$PATH
 . scripts/utils.sh
 
 echo
-infoln "Staring orderer"
+infoln "Staring orderer3 node"
 echo
 
-mkdir -p  ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/admincerts
-cp  ${PWD}/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/cert.pem  ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/admincerts/cert.pem
-
+mkdir -p ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/admincerts
+cp ${PWD}/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/cert.pem ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer3.example.com/msp/admincerts/cert.pem
 
 export FABRIC_LOGGING_SPEC=INFO
-export ORDERER_GENERAL_LISTENADDRESS=192.168.0.15
+export FABRIC_CFG_PATH=$PWD/configtx/orderer3
+export ORDERER_GENERAL_LISTENADDRESS=192.168.0.75
 export ORDERER_GENERAL_LISTENPORT=7050
 export ORDERER_GENERAL_LOCALMSPID=OrdererMSP
 export ORDERER_GENERAL_LOCALMSPDIR=${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp
@@ -32,10 +32,8 @@ export ORDERER_ADMIN_TLS_CERTIFICATE=${PWD}/organizations/ordererOrganizations/e
 export ORDERER_ADMIN_TLS_PRIVATEKEY=${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.key
 export ORDERER_ADMIN_TLS_ROOTCAS=[${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt]
 export ORDERER_ADMIN_TLS_CLIENTROOTCAS=[${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt]
-export ORDERER_ADMIN_LISTENADDRESS=192.168.0.15:7053
-export ORDERER_OPERATIONS_LISTENADDRESS=192.168.0.15:9443
+export ORDERER_ADMIN_LISTENADDRESS=192.168.0.75:7053
+export ORDERER_OPERATIONS_LISTENADDRESS=192.168.0.75:9443
 export ORDERER_METRICS_PROVIDER=prometheus
 
-orderer > logs/orderer3.log 2>&1 &
-
-
+orderer >logs/orderer3.log 2>&1 &

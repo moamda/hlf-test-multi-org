@@ -17,7 +17,6 @@ export FABRIC_CA_SERVER_CSR_HOSTS="localhost,192.168.0.71,192.168.0.72"
 
 fabric-ca-server start -b admin:adminpw -d > logs/ca-org1.log 2>&1 &
 
-successln "Done..."
 
 
 
