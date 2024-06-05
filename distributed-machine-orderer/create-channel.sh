@@ -35,7 +35,7 @@ echo $CHANNEL_NAME
 # setGlobals 1 # 1 means which organization is being used.
 
 createGenesisBlock
-# createChannel
+createChannel
 
 # channel sequence
 # 1 - createGenesisBlock, done by orderer org
