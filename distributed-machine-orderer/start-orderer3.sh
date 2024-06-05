@@ -36,4 +36,6 @@ export ORDERER_ADMIN_LISTENADDRESS=192.168.0.75:7053
 export ORDERER_OPERATIONS_LISTENADDRESS=192.168.0.75:9443
 export ORDERER_METRICS_PROVIDER=prometheus
 
+mkdir logs
+
 orderer >logs/orderer3.log 2>&1 &
