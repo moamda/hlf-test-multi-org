@@ -61,11 +61,6 @@ Organizations:
       Endorsement:
         Type: Signature
         Rule: "OR('Org1MSP.peer')"
-    AnchorPeers:
-      - Host: 192.168.0.71
-        Port: 7051
-      - Host: 192.168.0.72
-        Port: 7051  
 
 ################################################################################
 #
