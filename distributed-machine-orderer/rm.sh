@@ -68,6 +68,21 @@ rm -rf /home/vm4/hlf-test-multi-org/org1
 rm -rf /home/vm4/hlf-test-multi-org/production
 
 
+## VM5
+# peer0
+rm -rf /home/vm5/hlf-test-multi-org/peer0org1/production
+rm -rf /home/vm5/hlf-test-multi-org/org1/peer0/data/snapshots
+rm -rf /home/vm5/hlf-test-multi-org/peer0org1
+rm -rf /home/vm5/hlf-test-multi-org/org1
+rm -rf /home/vm5/hlf-test-multi-org/production
+# peer1
+rm -rf /home/vm5/hlf-test-multi-org/peer1org1/production
+rm -rf /home/vm5/hlf-test-multi-org/org1/peer1/data/snapshots
+rm -rf /home/vm5/hlf-test-multi-org/peer1org1
+rm -rf /home/vm5/hlf-test-multi-org/org1
+rm -rf /home/vm5/hlf-test-multi-org/production
+
+
 ## VM1 channel artifacts
 rm -rf /home/vm1/hlf-test-multi-org/distributed-machine-orderer/config_block.json
 rm -rf /home/vm1/hlf-test-multi-org/distributed-machine-orderer/config_block.pb
@@ -110,7 +125,7 @@ rm -rf /home/vm3/hlf-test-multi-org/distributed-machine-orderer/Org1MSPmodified_
 rm -rf /home/vm3/hlf-test-multi-org/distributed-machine-orderer/original_config.pb
 
 
-## VM3 channel artifacts
+## VM4 channel artifacts
 rm -rf /home/vm4/hlf-test-multi-org/distributed-machine-orderer/config_block.json
 rm -rf /home/vm4/hlf-test-multi-org/distributed-machine-orderer/config_block.pb
 rm -rf /home/vm4/hlf-test-multi-org/distributed-machine-orderer/config_update_in_envelope.json
@@ -122,6 +137,20 @@ rm -rf /home/vm4/hlf-test-multi-org/distributed-machine-orderer/Org1MSPanchors.t
 rm -rf /home/vm4/hlf-test-multi-org/distributed-machine-orderer/Org1MSPconfig.json
 rm -rf /home/vm4/hlf-test-multi-org/distributed-machine-orderer/Org1MSPmodified_config.json
 rm -rf /home/vm4/hlf-test-multi-org/distributed-machine-orderer/original_config.pb
+
+
+## VM5 channel artifacts
+rm -rf /home/vm5/hlf-test-multi-org/distributed-machine-orderer/config_block.json
+rm -rf /home/vm5/hlf-test-multi-org/distributed-machine-orderer/config_block.pb
+rm -rf /home/vm5/hlf-test-multi-org/distributed-machine-orderer/config_update_in_envelope.json
+rm -rf /home/vm5/hlf-test-multi-org/distributed-machine-orderer/config_update.json
+rm -rf /home/vm5/hlf-test-multi-org/distributed-machine-orderer/config_update.pb
+rm -rf /home/vm5/hlf-test-multi-org/distributed-machine-orderer/log.txt
+rm -rf /home/vm5/hlf-test-multi-org/distributed-machine-orderer/modified_config.pb
+rm -rf /home/vm5/hlf-test-multi-org/distributed-machine-orderer/Org1MSPanchors.tx
+rm -rf /home/vm5/hlf-test-multi-org/distributed-machine-orderer/Org1MSPconfig.json
+rm -rf /home/vm5/hlf-test-multi-org/distributed-machine-orderer/Org1MSPmodified_config.json
+rm -rf /home/vm5/hlf-test-multi-org/distributed-machine-orderer/original_config.pb
 
 
 #remove chaincode added files
