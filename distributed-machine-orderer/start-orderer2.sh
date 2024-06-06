@@ -15,7 +15,7 @@ mkdir -p ${PWD}/organizations/ordererOrganizations/example.com
 scp -r vm3@192.168.0.73:/home/vm3/hlf-test-multi-org/distributed-machine-orderer/organizations/ordererOrganizations/example.com/* ${PWD}/organizations/ordererOrganizations/example.com
 
 mkdir -p ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/admincerts
-cp ${PWD}/organizations/ordererOrganizations/example.com/users/Admin@dost.itdi.ph/msp/signcerts/cert.pem ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/admincerts/cert.pem
+cp ${PWD}/organizations/ordererOrganizations/example.com/users/Admin@example.com/msp/signcerts/cert.pem ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer2.example.com/msp/admincerts/cert.pem
 
 export FABRIC_LOGGING_SPEC=INFO
 export FABRIC_CFG_PATH=$PWD/configtx/orderer2
