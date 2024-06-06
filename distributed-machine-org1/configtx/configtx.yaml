@@ -28,7 +28,6 @@ Organizations:
     
     OrdererEndpoints:
       - 192.168.0.73:7050
-      - 192.168.0.74:7050
   
   - &Org1
     Name: Org1MSP
